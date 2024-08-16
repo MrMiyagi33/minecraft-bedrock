@@ -26,6 +26,8 @@ RUN wget -O bedrock.zip https://minecraft.azureedge.net/bin-linux/bedrock-server
     && unzip bedrock.zip \
     && rm bedrock.zip
 
+RUN wget https://raw.githubusercontent.com/MrMiyagi33/minecraft-bedrock/main/setProperties.sh
+
 RUN echo "eula=true" > eula.txt
 
 EXPOSE 25565
