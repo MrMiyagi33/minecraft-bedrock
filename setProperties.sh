@@ -17,5 +17,3 @@ sed -i -e "s/\(^server-name=\).*/\1$1/" \
 -e "s/\(^server-portv6=\).*/\1$6/" \
 -e "s/\(^level-name=\).*/\1$7/" \
 -e "s/\(^level-seed=\).*/\1$8/" server.properties
-
-./bedrock_server
