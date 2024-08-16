@@ -32,6 +32,4 @@ RUN echo "eula=true" > eula.txt
 
 EXPOSE 25565
 
-ENTRYPOINT [ "LD_LIBRARY_PATH=." ]
-
-CMD ["$RUN_PROPERTY_SCRIPT","./bedrock_server"]
+CMD [LD_LIBRARY_PATH=., "$RUN_PROPERTY_SCRIPT","./bedrock_server"]
