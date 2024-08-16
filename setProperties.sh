@@ -1,3 +1,5 @@
+export LD_LIBRARY_PATH=.
+
 srvName=$1
 gMode=$2
 dif=$3
