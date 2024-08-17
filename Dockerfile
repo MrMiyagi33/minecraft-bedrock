@@ -41,4 +41,4 @@ RUN chmod +x setProperties.sh
 
 ENTRYPOINT ${RUN_PROPERTY_SCRIPT}
 
-CMD ["sh" , "runBedrock.sh"]
+CMD runBedrock.sh
