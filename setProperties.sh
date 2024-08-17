@@ -17,8 +17,6 @@ name="$7"
 echo $name
 seed="$8"
 echo $seed
-serverCoreScript="$9"
-echo $serverCoreScript
 
 echo 'starting replacement of properties'
 
@@ -33,4 +31,5 @@ sed -i -e "s/\(^server-name=\).*/\1$srvName/" \
 
 echo 'replacement completed!'
 
-exec $serverCoreScript
+echo 'Starting server'
+./bedrock_server
