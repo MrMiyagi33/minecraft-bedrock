@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export LD_LIBRARY_PATH=.
 
 srvName="$1"
