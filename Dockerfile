@@ -2,24 +2,28 @@ FROM ubuntu:24.10
 
 ENV DEBIAN_FRONTEND=noninteractive
 
+EXPOSE 19132/udp
+
 VOLUME [ "/minecraft" ]
 
 WORKDIR /minecraft
 
-ARG SERVER_NAME
-ARG GAME_MODE
-ARG DIFFICULTY
-ARG ALLOW_LIST
-ARG SERVER_PORT
-ARG SERVER_PORTV6
-ARG LEVEL_NAME
-ARG LEVEL_SEED
+ENV SERVER_NAME='My Server'
+ENV GAME_MODE='survival'
+ENV DIFFICULTY='normal'
+ENV ALLOW_LIST='false'
+ENV SERVER_PORT='19132'
+ENV SERVER_PORTV6='19133'
+ENV LEVEL_NAME='My World'
+ENV LEVEL_SEED=
 
 ENV RUN_PROPERTY_SCRIPT="sh setProperties.sh ${SERVER_NAME} ${GAME_MODE} ${DIFFICULTY} ${ALLOW_LIST} ${SERVER_PORT} ${SERVER_PORTV6} ${LEVEL_NAME} ${LEVEL_SEED}"
+#ENV PARAMS="{SERVER_NAME} ${GAME_MODE} ${DIFFICULTY} ${ALLOW_LIST} ${SERVER_PORT} ${SERVER_PORTV6} ${LEVEL_NAME} ${LEVEL_SEED}"
 
 RUN apt-get update && apt-get install -y \
     unzip \
     wget \
+    libcurl4 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN wget -O bedrock.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.21.20.03.zip \
@@ -30,6 +34,10 @@ RUN wget https://raw.githubusercontent.com/MrMiyagi33/minecraft-bedrock/main/set
 
 RUN echo "eula=true" > eula.txt
 
-EXPOSE 25565
+RUN chmod +x setProperties.sh
 
-CMD [ "$RUN_PROPERTY_SCRIPT","./bedrock_server"]
+#RUN ${RUN_PROPERTY_SCRIPT}
+
+ENTRYPOINT [ "sh", "setProperties.sh" ]
+
+CMD ["./bedrock_server"]
