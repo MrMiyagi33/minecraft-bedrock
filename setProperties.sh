@@ -1,24 +1,26 @@
 #!/bin/bash
 export LD_LIBRARY_PATH=.
 
-srvName="$1"
-echo $srvName
-gMode="$2"
-echo $gMode
-dif="$3"
-echo $dif
-allow="$4"
-echo $allow
-sPort="$5"
-echo $sPort
-sPort6="$6"
-echo $sPort6
-name="$7"
-echo $name
-seed="$8"
-echo $seed
+echo "Replacement variables"
 
-echo 'starting replacement of properties'
+srvName="$1"
+echo "server name: ", $srvName
+gMode="$2"
+echo "game mode: ", $gMode
+dif="$3"
+echo "difficulty: ", $dif
+allow="$4"
+echo "allow list: ", $allow
+sPort="$5"
+echo "portv4: ", $sPort
+sPort6="$6"
+echo "portv6: ", $sPort6
+name="$7"
+echo "name: ", $name
+seed="$8"
+echo "seed: ", $seed
+
+echo 'Starting replacement of properties'
 
 sed -i -e "s/\(^server-name=\).*/\1$srvName/" \
 -e "s/\(^gamemode=\).*/\1$gMode/" \
