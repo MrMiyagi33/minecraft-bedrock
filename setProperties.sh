@@ -33,5 +33,4 @@ sed -i -e "s/\(^server-name=\).*/\1$srvName/" \
 
 echo 'replacement complete'
 
-echo 'starting server engine'
 exec $serverCoreScript

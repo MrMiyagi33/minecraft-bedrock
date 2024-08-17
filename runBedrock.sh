@@ -1,2 +1,3 @@
 #!/bin/bash
-exec ./bedrock_server
+echo "start server"
+./bedrock_server
