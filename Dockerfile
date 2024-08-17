@@ -8,16 +8,16 @@ VOLUME [ "/minecraft" ]
 
 WORKDIR /minecraft
 
-ENV SERVER_NAME='My Server'
+ENV SERVER_NAME='My_Server'
 ENV GAME_MODE='survival'
 ENV DIFFICULTY='normal'
 ENV ALLOW_LIST='false'
 ENV SERVER_PORT='19132'
 ENV SERVER_PORTV6='19133'
-ENV LEVEL_NAME='My World'
+ENV LEVEL_NAME='My_World'
 ENV LEVEL_SEED=
 
-ENV RUN_PROPERTY_SCRIPT="sh setProperties.sh ${SERVER_NAME} ${GAME_MODE} ${DIFFICULTY} ${ALLOW_LIST} ${SERVER_PORT} ${SERVER_PORTV6} ${LEVEL_NAME} ${LEVEL_SEED}"
+ENV RUN_PROPERTY_SCRIPT="sh setProperties.sh '${SERVER_NAME}' '${GAME_MODE}' '${DIFFICULTY}' '${ALLOW_LIST}' '${SERVER_PORT}' '${SERVER_PORTV6}' '${LEVEL_NAME}' '${LEVEL_SEED}'"
 #ENV PARAMS="{SERVER_NAME} ${GAME_MODE} ${DIFFICULTY} ${ALLOW_LIST} ${SERVER_PORT} ${SERVER_PORTV6} ${LEVEL_NAME} ${LEVEL_SEED}"
 
 RUN apt-get update && apt-get install -y \
@@ -38,6 +38,6 @@ RUN chmod +x setProperties.sh
 
 #RUN ${RUN_PROPERTY_SCRIPT}
 
-ENTRYPOINT [ "sh", "setProperties.sh" ]
+ENTRYPOINT ${RUN_PROPERTY_SCRIPT}
 
-CMD ["./bedrock_server"]
+CMD ./bedrock_server

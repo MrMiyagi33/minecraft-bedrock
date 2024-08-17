@@ -32,3 +32,6 @@ sed -i -e "s/\(^server-name=\).*/\1$srvName/" \
 -e "s/\(^level-seed=\).*/\1$seed/" server.properties
 
 echo 'replacement complete'
+
+echo 'starting server engine'
+exec $serverCore
