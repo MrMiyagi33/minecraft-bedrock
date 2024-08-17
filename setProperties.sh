@@ -17,8 +17,8 @@ name="$7"
 echo $name
 seed="$8"
 echo $seed
-serverCore="$9"
-echo $serverCore
+serverCoreScript="$9"
+echo $serverCoreScript
 
 echo 'starting replacement of properties'
 
@@ -34,4 +34,4 @@ sed -i -e "s/\(^server-name=\).*/\1$srvName/" \
 echo 'replacement complete'
 
 echo 'starting server engine'
-exec $serverCore
+exec $serverCoreScript

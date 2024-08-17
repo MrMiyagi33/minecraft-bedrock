@@ -30,7 +30,8 @@ RUN wget -O bedrock.zip https://minecraft.azureedge.net/bin-linux/bedrock-server
     && unzip bedrock.zip \
     && rm bedrock.zip
 
-RUN wget https://raw.githubusercontent.com/MrMiyagi33/minecraft-bedrock/main/setProperties.sh
+RUN wget https://raw.githubusercontent.com/MrMiyagi33/minecraft-bedrock/main/setProperties.sh \
+    wget https://raw.githubusercontent.com/MrMiyagi33/minecraft-bedrock/main/runBedrock.sh
 
 RUN echo "eula=true" > eula.txt
 
@@ -38,6 +39,6 @@ RUN chmod +x setProperties.sh
 
 #RUN ${RUN_PROPERTY_SCRIPT}
 
-ENTRYPOINT ${RUN_PROPERTY_SCRIPT}
+ENTRYPOINT ["${RUN_PROPERTY_SCRIPT}"]
 
-CMD ./bedrock_server
+CMD ["sh" , "runBedrock.sh"]
