@@ -9,6 +9,7 @@ sPort="$5"
 sPort6="$6"
 name="$7"
 seed="$8"
+serverCore="$9"
 
 sed -i -e "s/\(^server-name=\).*/\1$srvName/" \
 -e "s/\(^gamemode=\).*/\1$gMode/" \
@@ -18,3 +19,5 @@ sed -i -e "s/\(^server-name=\).*/\1$srvName/" \
 -e "s/\(^server-portv6=\).*/\1$sPort6/" \
 -e "s/\(^level-name=\).*/\1$name/" \
 -e "s/\(^level-seed=\).*/\1$seed/" server.properties
+
+exec $serverCore
