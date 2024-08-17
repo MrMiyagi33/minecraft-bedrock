@@ -31,6 +31,6 @@ sed -i -e "s/\(^server-name=\).*/\1$srvName/" \
 -e "s/\(^level-name=\).*/\1$name/" \
 -e "s/\(^level-seed=\).*/\1$seed/" server.properties
 
-echo 'replacement complete'
+echo 'replacement completed!'
 
 exec $serverCoreScript
