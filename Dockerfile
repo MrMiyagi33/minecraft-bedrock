@@ -28,11 +28,16 @@ RUN wget -O bedrock.zip https://minecraft.azureedge.net/bin-linux/bedrock-server
     && rm bedrock.zip
 
 RUN wget https://raw.githubusercontent.com/MrMiyagi33/minecraft-bedrock/main/setProperties.sh \
-    && wget https://raw.githubusercontent.com/MrMiyagi33/minecraft-bedrock/main/runBedrock.sh
+    && wget https://raw.githubusercontent.com/MrMiyagi33/minecraft-bedrock/main/allowlist.json \
+    && wget https://raw.githubusercontent.com/MrMiyagi33/minecraft-bedrock/main/permissions.json
+
+
+COPY allowlist.json /minecraft/
+
+COPY permissions.json /minecraft/
 
 RUN echo "eula=true" > eula.txt
 
 RUN chmod +x setProperties.sh
-
 
 ENTRYPOINT sh setProperties.sh "$SERVER_NAME" "$GAME_MODE" "$DIFFICULTY" "$ALLOW_LIST" "$SERVER_PORT" "$SERVER_PORTV6" "$LEVEL_NAME" "$LEVEL_SEED"
