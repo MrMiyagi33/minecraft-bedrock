@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
     wget \
     libcurl4 \
+    vim \
     && rm -rf /var/lib/apt/lists/*
 
 RUN wget -O bedrock.zip https://minecraft.azureedge.net/bin-linux/bedrock-server-1.21.20.03.zip \
@@ -28,16 +29,9 @@ RUN wget -O bedrock.zip https://minecraft.azureedge.net/bin-linux/bedrock-server
     && rm bedrock.zip
 
 RUN wget https://raw.githubusercontent.com/MrMiyagi33/minecraft-bedrock/main/setProperties.sh \
-    && wget https://raw.githubusercontent.com/MrMiyagi33/minecraft-bedrock/main/allowlist.json \
-    && wget https://raw.githubusercontent.com/MrMiyagi33/minecraft-bedrock/main/permissions.json
-
-
-COPY allowlist.json /minecraft/
-
-COPY permissions.json /minecraft/
-
-RUN echo "eula=true" > eula.txt
-
-RUN chmod +x setProperties.sh
+    && wget -O allowlist.json https://raw.githubusercontent.com/MrMiyagi33/minecraft-bedrock/main/allowlist.json \
+    && wget -O permissions.json https://raw.githubusercontent.com/MrMiyagi33/minecraft-bedrock/main/permissions.json \
+    && echo "eula=true" > eula.txt \
+    && chmod +x setProperties.sh
 
 ENTRYPOINT sh setProperties.sh "$SERVER_NAME" "$GAME_MODE" "$DIFFICULTY" "$ALLOW_LIST" "$SERVER_PORT" "$SERVER_PORTV6" "$LEVEL_NAME" "$LEVEL_SEED"
