@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -y \
     vim \
     && rm -rf /var/lib/apt/lists/*
 
-RUN wget -O bedrock.zip https://www.minecraft.net/bedrockdedicatedserver/bin-linux/bedrock-server-1.21.51.02.zip \
+RUN wget --user-agent "mrmiyagi33/minecraft-server-bedrock" -O bedrock.zip https://www.minecraft.net/bedrockdedicatedserver/bin-linux/bedrock-server-1.21.51.02.zip \
     && unzip bedrock.zip \
     && rm bedrock.zip
 
