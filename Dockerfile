@@ -20,12 +20,14 @@ ENV LEVEL_SEED=
 RUN apt-get update && apt-get install -y \
     unzip \
     wget \
+    curl \
     libcurl4 \
     vim \
     && rm -rf /var/lib/apt/lists/*
 
-RUN MC_VERSION=$(wget https://mc-bds-helper.vercel.app/api/latest) \ 
-    wget --user-agent "mrmiyagi33/minecraft-server-bedrock" -O bedrock.zip $MC_VERSION \
+RUN MC_VERSION=$(curl https://mc-bds-helper.vercel.app/api/latest) \ 
+    && echo $MC_VERSION \
+    && wget --user-agent "mrmiyagi33/minecraft-server-bedrock" -O bedrock.zip $MC_VERSION \
     && unzip bedrock.zip \
     && rm bedrock.zip
 
