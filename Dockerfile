@@ -1,4 +1,4 @@
-FROM ubuntu:24.10
+FROM ubuntu
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -22,11 +22,11 @@ RUN apt-get update && apt-get install -y \
     wget \
     jq \
     curl \
-    libcurl4 \
+    libcurl4t64 \
     vim \
     && rm -rf /var/lib/apt/lists/*
 
-RUN MC_VERSION=$(wget -qO- https://net-secondary.web.minecraft-services.net/api/v1.0/download/links | jq '.result.links[] | select(.downloadType=="serverBedrockWindows") | .downloadUrl') \ 
+RUN MC_VERSION=$(wget -qO- https://net-secondary.web.minecraft-services.net/api/v1.0/download/links | jq -r '.result.links[] | select(.downloadType=="serverBedrockWindows") | .downloadUrl') \ 
     && echo $MC_VERSION \
     && wget --user-agent "mrmiyagi33/minecraft-server-bedrock" -O bedrock.zip $MC_VERSION \
     && unzip bedrock.zip \
